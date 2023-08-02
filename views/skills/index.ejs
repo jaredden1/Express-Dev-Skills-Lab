@@ -10,9 +10,10 @@
     <a href="/">Home Page</a>
     <h1>Skills</h1>
     <ul>
-      <% skills.forEach(function(s) { %>
+    <!-- flounder is used everywhere where there is JS code within HTML -->
+      <% skills.forEach(function(s) { %> 
         <li>
-          <%= s.skills %>
+          <a href="/skills/<%=s.id%>"><%= s.skill %></a>
             - 
           <%= s.done ? 'done' : 'not done' %>
         </li>
