@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser'); //middleware designed to process cookies
 var logger = require('morgan');
+var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
 var skillsRouter = require('./routes/skills');
@@ -10,19 +11,25 @@ var skillsRouter = require('./routes/skills');
 var app = express();
 
 // view engine setup
-//app.set is used to configure apps
+// app.set is used to configure apps
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//app.use is always used for middleware
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use() is always used for middleware
+app.use(logger('dev')); 
+// log in the terminal the HTTP request info
+app.use(express.json()); 
+// processes data sent in the body of the request if its json
+app.use(express.urlencoded({ extended: false })); 
+//processes data sent in 'form' body of the request
+app.use(cookieParser()); 
+// add cookie property for each cookie sent in the request
+app.use(express.static(path.join(__dirname, 'public'))); 
+// if the request is for a static asset returns the file
+app.use(methodOverride('_method'));
 
 // The first arg starts with path
-//The paths within the route modules are combined to the starts with paths
+// The paths within the route modules are combined to the starts with paths
 app.use('/', indexRouter);
 app.use('/skills', skillsRouter);
 

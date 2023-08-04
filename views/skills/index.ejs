@@ -4,11 +4,14 @@
     <!-- flounder is used everywhere where there is JS code within HTML -->
     <% skills.forEach(function(s) { %> 
         <li>
+            <form action="/skills/<%= s.id %>?_method=DELETE"
+                class="delete-form" method="POST">
+                <button type="submit">X</button>
+            </form>
             <a href="/skills/<%=s.id%>"><%= s.skill %></a>
             - 
-            <%= s.done ? 'done' : 'not done' %>
+            <%= s.done ? 'Mastered' : 'Not Mastered' %>
         </li>
-        <% }); %>
-    </ul>
-    
+    <% }); %>
+</ul>
 <%- include('../partials/footer') %>
