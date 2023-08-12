@@ -10,11 +10,15 @@ router.get('/', skillsCtrl.index);
 router.get('/new', skillsCtrl.new);
 // GET /skills/:id
 router.get('/:id', skillsCtrl.show);
+// GET skills edit listing
+router.get('/:id/edit', skillsCtrl.edit)
 // POST /skills
 router.post('/', skillsCtrl.create);
 // DELETE /skills
 router.delete('/:id', skillsCtrl.delete);
 // PUT skills updating resource
+router.put('/:id', skillsCtrl.update);
+/// PUT skills updating resource
 
 
 module.exports = router;

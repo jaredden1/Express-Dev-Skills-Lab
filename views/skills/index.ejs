@@ -1,17 +1,17 @@
 <%- include('../partials/header') %>
 
 <ul>
-    <!-- flounder is used everywhere where there is JS code within HTML -->
-    <% skills.forEach(function(s) { %> 
-        <li>
-            <form action="/skills/<%= s.id %>?_method=DELETE"
-                class="delete-form" method="POST">
-                <button type="submit">X</button>
-            </form>
-            <a href="/skills/<%=s.id%>"><%= s.skill %></a>
-            - 
-            <%= s.done ? 'Mastered' : 'Not Mastered' %>
-        </li>
-    <% }); %>
+  <!-- flounder is used everywhere where there is JS code within HTML -->
+  <% skills.forEach(function(s) { %>
+  <li>
+    <form method= "POST" action="/skills/<%= s.id %>?_method=DELETE"
+      class="delete-form"
+    >
+      <button type="submit">DELETE</button>
+    </form>
+    <a href="/skills/<%=s.id%>"><%= s.skill %></a>
+    - <%= s.done ? 'Mastered' : 'Not Mastered' %>
+  </li>
+  <% }); %>
 </ul>
 <%- include('../partials/footer') %>

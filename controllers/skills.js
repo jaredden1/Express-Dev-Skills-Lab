@@ -6,7 +6,9 @@ module.exports = {
    show,
    new: newSkill,
    create,
-   delete: deleteSkill
+   delete: deleteSkill,
+   edit,
+   update,
 }
 
 function deleteSkill(req, res) {
@@ -38,4 +40,16 @@ function index(req, res) {
     });
   }
 
+function edit(req, res) {
+   const id = req.params.id;
+   res.render("skills/edit", { title: "Skill Edit", skill: Skill.getOne(id) });
+ }
+
+ function update(req, res) {
+   const id = Number(req.params.id)
+   req.body.id = id // req.body can be modified after it reaches the controller
+   console.log(req.body, 'data passed to update')
+   Skill.update(id, req.body)
+   res.redirect(`/skills/${id}`) // template - literal 
+ }
   

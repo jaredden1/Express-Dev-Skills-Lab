@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Express Skills</title>
+    <% if (typeof title !== "undefined"){ %>
+        <title><%= title %></title>
+    <%}%>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>

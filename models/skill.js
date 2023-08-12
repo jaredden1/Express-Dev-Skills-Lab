@@ -10,13 +10,18 @@ const skills = [
     getAll,
     getOne,
     create,
-    deleteOne
+    deleteOne,
+    update: updateOne
+
   };
 
-  function deleteOne(id) {
-     id = parseInt(id);
-     const idx = skills.findIndex(skill => skill.id === id);
-     skills.splice(idx, 1);
+  function getAll() {
+    return skills;
+  }
+
+  function getOne(id) {
+    id = parseInt(id);
+    return skills.find(skill => skill.id === id);
   }
 
   function create(skill) {
@@ -25,12 +30,25 @@ const skills = [
     skills.push(skill);
   }
 
-  function getOne(id) {
+  function deleteOne(id) {
     id = parseInt(id);
-    return skills.find(skill => skill.id === id);
-  }
+    const idx = skills.findIndex(skill => skill.id === id);
+    skills.splice(idx, 1);
+ }
+
+ function updateOne(id, data){
+  console.log(id, data)
+  let index = skills.findIndex(t=>t.id == id)
   
-  function getAll() {
-    return skills;
-  }
+  console.log("current todo index", index)
+ 
+  const updateData = {...data }
+  updateData.done = data.done ? true : false
+  let updatedSkill = {...skills[index], ...updateData} 
+  // 1. ...todo -> take keys in todo and add them as properties into the new object
+  // 2. ...data -> take keys in data object (req.body), overwriting any properties with the current state of our data 
+  skills.splice(index, 1, updatedSkill)
+}
+
+
  
